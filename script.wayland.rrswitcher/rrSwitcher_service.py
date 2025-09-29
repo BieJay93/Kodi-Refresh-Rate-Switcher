@@ -3,17 +3,18 @@ import xbmcgui
 
 import rrSwitcher_config as rrsconfig
 import rrSwitcher_player as rrsplayer
+import rrSwitcher_monitor as rrsmonitor
 
 xbmc.sleep(2000)
 
-class rrSwitcherService:
+class rrsService:
  
     @staticmethod
     def run():
         xbmc.log("[RRSwitcher]: Addon started", level=xbmc.LOGINFO)
         rrsconfig.initSettings()
         
-        monitor = xbmc.Monitor()
+        monitor = rrsmonitor.rrsMonitor()
         player = rrsplayer.rrsPlayer()
             
         while not monitor.abortRequested():
@@ -25,4 +26,4 @@ class rrSwitcherService:
 
 
 if __name__ == '__main__':
-    rrSwitcherService.run()
+    rrsService.run()

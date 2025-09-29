@@ -40,3 +40,5 @@ def initSettings():
         additionalConfig = addonSettings.getString('AdditionalConfig')
     except:
         xbmc.log("[RRSwitcher]: Error while reading setting AdditionalConfig, using default value", level=xbmc.LOGWARNING)
+    
+    xbmc.log("[RRSwitcher]: Config updated" , level=xbmc.LOGINFO)
