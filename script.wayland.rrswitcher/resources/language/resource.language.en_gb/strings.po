@@ -38,3 +38,11 @@ msgstr "Primary Screen?"
 msgctxt "#90007"
 msgid "Settings for the screen running Kodi"
 msgstr "Settings for the screen running Kodi"
+
+msgctxt "#90008"
+msgid "Path to the gdctl binary"
+msgstr "Path to the gdctl binary"
+
+msgctxt "#90009"
+msgid "Switch to HDR mode for HDR content"
+msgstr "Switch to HDR mode for HDR content"

@@ -37,6 +37,23 @@
                         <heading>90001</heading>
                     </control>
                 </setting>
+                <setting id="EnableHDR" type="boolean" label="90009" help="">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle">
+                        <heading>90009</heading>
+                    </control>
+                </setting>
+                <setting id="GdctlPath" type="string" label="90008" help="">
+                    <level>0</level>
+                    <default>gdctl</default>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>90008</heading>
+                    </control>
+                </setting>
 			</group>
             <group id="2" label="90004">
                 <setting id="AdditionalConfig" type="string" label="90005" help="">
