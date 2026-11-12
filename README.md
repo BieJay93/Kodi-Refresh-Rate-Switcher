@@ -23,14 +23,15 @@ Examples: `1920x1080` or `3840x2160`
 Examples: `50`,`60` or `120`
 - **Switch to HDR mode for HDR content**: Enable this if your screen supports HDR and you want to enable HDR when playing HDR content (if your screen supports HDR, there should be an HDR toggle in your GNOME display settings). This toggle adds "--color-mode bt2100" to the gdctl command whenever HDR content is played.
 - **Path to the gdctl binary**: This defaults to just "gdctl". If the gdctl command is not in a standard location or in your PATH variable, you can specify the full path here.
-Example when using the flatpak version of Kodi: `/run/host/bin/gdctl` (Make sure to grant the host-os permissions to the flatpak, see below)
+Example when using the flatpak version of Kodi: `/run/host/bin/python3 /run/host/bin/gdctl` (Make sure to grant the host-os permissions to the flatpak, see below)
+- **Ignore short videos** and max duration: When enabled, we check the video length before doing a refresh rate switch. If the video is considered short, we do not switch the refresh rate. (refresh rate switching flashes a black screen and takes some time)
 - **gdctl string**: If you're using multiple screens, gdctl needs some more parameters.  
 Example: `--logical-monitor --monitor=HDMI-0 --right-of DP-0`  
 More infos about it: https://man.archlinux.org/man/gdctl.1.en
 
 ## Kodi via Flatpak info
 When using a flatpak version of Kodi, you need to do two things to make this addon work:
-- set up the Path to the gdctl binary in the addon configuration
+- set up the Path to the host gdctl binary in the addon configuration. You probably also need to add `/run/host/bin/python3 ` in front of it, to make sure it executes with the host python.
 - Enable host-os (or greater) permissions for the tv.kodi.Kodi flatpak.
 Enabling the permissions for the kodi flatpak can be done in a number of ways. The easiest is to use "Flatseal", a graphics application specifically designed for this. Install it via flathub or command line ( flatpak install com.github.tchx84.Flatseal ), launch it, select Kodi on the left, and toggle the 2nd item (filesystem=host-os) in the "Filesystem section".
 Alternatively you can grant the permissions via command line: `flatpak --user override tv.kodi.Kodi --filesystem=host-os` if your Kodi flatpak was installed in user space (find out using the `flatpak list` command), or `sudo flatpak override tv.kodi.Kodi --filesystem=host-os` for a system-wide installed Kodi flatpak.

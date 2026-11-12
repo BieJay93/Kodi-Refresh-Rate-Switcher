@@ -9,6 +9,8 @@ isPrimaryMonitor = True
 additionalConfig = ""
 gdctlPath = 'gdctl'
 enableHDR = False
+enableDurationCheck = False
+minimalDuration = 90
 
 def getCurrentRefreshRate():
     global currentRefreshRate
@@ -19,7 +21,7 @@ def getDefaultRefreshRate():
     return "{:.3f}".format(defaultRefreshRate)
 
 def initSettings():
-    global defaultRefreshRate, defaultResolution, defautlMonitorName, isPrimaryMonitor, additionalConfig, enableHDR, gdctlPath
+    global defaultRefreshRate, defaultResolution, defautlMonitorName, isPrimaryMonitor, additionalConfig, enableHDR, gdctlPath, enableDurationCheck, minimalDuration
     addonSettings = xbmcaddon.Addon('script.wayland.rrswitcher').getSettings()
     try:
         defautlMonitorName = addonSettings.getString('MonitorName')
@@ -49,5 +51,13 @@ def initSettings():
         enableHDR = addonSettings.getBool('EnableHDR')
     except:
         xbmc.log("[RRSwitcher]: Error while reading setting EnableHDR, using default value", level=xbmc.LOGWARNING)
+    try:
+        enableDurationCheck = addonSettings.getBool('enableDurationCheck')
+    except:
+        xbmc.log("[RRSwitcher]: Error while reading setting enableDurationCheck, using default value", level=xbmc.LOGWARNING)
+    try:
+        minimalDuration = addonSettings.getNumber('minimalDuration')
+    except:
+        xbmc.log("[RRSwitcher]: Error while reading setting minimalDuration, using default value", level=xbmc.LOGWARNING)
     
     xbmc.log("[RRSwitcher]: Config updated" , level=xbmc.LOGINFO)

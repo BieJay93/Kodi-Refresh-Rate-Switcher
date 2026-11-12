@@ -46,3 +46,11 @@ msgstr "Path to the gdctl binary"
 msgctxt "#90009"
 msgid "Switch to HDR mode for HDR content"
 msgstr "Switch to HDR mode for HDR content"
+
+msgctxt "#90010"
+msgid "Ignore short videos"
+msgstr "Ignore short videos"
+
+msgctxt "#90011"
+msgid "max duration (in seconds) of a short video"
+msgstr "max duration (in seconds) of a short video"

@@ -54,6 +54,20 @@
                         <heading>90008</heading>
                     </control>
                 </setting>
+                <setting id="EnableDurationCheck" type="boolean" label="90010" help="">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle">
+                        <heading>90010</heading>
+                    </control>
+                </setting>
+                <setting id="MinimalDuration" type="number" label="90011" help="">
+                    <level>0</level>
+                    <default>60</default>
+                    <control type="edit" format="number">
+                        <heading>90011</heading>
+                    </control>
+                </setting>
 			</group>
             <group id="2" label="90004">
                 <setting id="AdditionalConfig" type="string" label="90005" help="">
