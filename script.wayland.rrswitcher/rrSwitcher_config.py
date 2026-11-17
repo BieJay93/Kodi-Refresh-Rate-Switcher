@@ -52,11 +52,11 @@ def initSettings():
     except:
         xbmc.log("[RRSwitcher]: Error while reading setting EnableHDR, using default value", level=xbmc.LOGWARNING)
     try:
-        enableDurationCheck = addonSettings.getBool('enableDurationCheck')
+        enableDurationCheck = addonSettings.getBool('EnableDurationCheck')
     except:
         xbmc.log("[RRSwitcher]: Error while reading setting enableDurationCheck, using default value", level=xbmc.LOGWARNING)
     try:
-        minimalDuration = addonSettings.getNumber('minimalDuration')
+        minimalDuration = addonSettings.getNumber('MinimalDuration')
     except:
         xbmc.log("[RRSwitcher]: Error while reading setting minimalDuration, using default value", level=xbmc.LOGWARNING)
     

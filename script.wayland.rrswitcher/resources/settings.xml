@@ -56,14 +56,14 @@
                 </setting>
                 <setting id="EnableDurationCheck" type="boolean" label="90010" help="">
                     <level>0</level>
-                    <default>true</default>
+                    <default>false</default>
                     <control type="toggle">
                         <heading>90010</heading>
                     </control>
                 </setting>
                 <setting id="MinimalDuration" type="number" label="90011" help="">
                     <level>0</level>
-                    <default>60</default>
+                    <default>90</default>
                     <control type="edit" format="number">
                         <heading>90011</heading>
                     </control>
