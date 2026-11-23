@@ -9,17 +9,11 @@ class rrsPlayer(xbmc.Player):
 
     def onAVStartedAV(self):
         xbmc.log("[RRSwitcher]: Playback started" , level=xbmc.LOGINFO)
-        hdrType = xbmc.getInfoLabel('VideoPlayer.HdrType')
-        if hdrType:
-            xbmc.log("[RRSwitcher]: HDR type: %s" %(hdrType), level=xbmc.LOGINFO)
-        self.changeRefreshRate(xbmc.getInfoLabel('Player.Process(VideoFps)'), hdrType)
+        self.onAVStartedOrChanged()
     
     def onAVChange(self):
         xbmc.log("[RRSwitcher]: Playback changed" , level=xbmc.LOGINFO)
-        hdrType = xbmc.getInfoLabel('VideoPlayer.HdrType')
-        if hdrType:
-            xbmc.log("[RRSwitcher]: HDR type: %s" %(hdrType), level=xbmc.LOGINFO)
-        self.changeRefreshRate(xbmc.getInfoLabel('Player.Process(VideoFps)'), hdrType)
+        self.onAVStartedOrChanged()
 
     def onPlayBackEnded(self):
         self.onPlayBackEndedOrStopped()
@@ -30,6 +24,28 @@ class rrsPlayer(xbmc.Player):
     def onPlayBackEndedOrStopped(self):
         xbmc.log("[RRSwitcher]: Playback stopped" , level=xbmc.LOGINFO)
         self.changeRefreshRate(rrsconfig.defaultRefreshRate)
+
+    def onAVStartedOrChanged(self):
+        hdrType = xbmc.getInfoLabel('VideoPlayer.HdrType')
+        if hdrType:
+            xbmc.log("[RRSwitcher]: HDR type: %s" %(hdrType), level=xbmc.LOGINFO)
+        if not rrsconfig.enableDurationCheck:
+            # We do not care about video length, just change the refresh
+            self.changeRefreshRate(xbmc.getInfoLabel('Player.Process(VideoFps)'), hdrType)
+        else:
+            mediaDuration = xbmc.getInfoLabel('Player.Duration(hh:mm:ss)')
+            xbmc.log("[RRSwitcher]: raw mediaDuration=%s" %(mediaDuration) , level=xbmc.LOGINFO)
+            try:
+                # the Player.Duration returns hours:minutes:seconds, we convert this to seconds
+                durationlist = mediaDuration.split(":")
+                mediaDuration = int(durationlist[0])*60*60 + int(durationlist[1])*60 + int(durationlist[2])
+            except:
+                mediaDuration = 9999
+            xbmc.log("[RRSwitcher]: media duration in seconds: %s , minimalDuration in config: %s" %(mediaDuration, rrsconfig.minimalDuration) , level=xbmc.LOGINFO)
+            if (mediaDuration > rrsconfig.minimalDuration):
+                self.changeRefreshRate(xbmc.getInfoLabel('Player.Process(VideoFps)'), hdrType)
+
+
 
     def changeRefreshRate(self, refreshRate, HDR=None):
         if(float(refreshRate) != rrsconfig.currentRefreshRate):
